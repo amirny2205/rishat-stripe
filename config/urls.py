@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+import stripe_simple.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('get_session/<int:pk>/', stripe_simple.views.get_session, name='get_session'),
+    path('buy_item/<int:pk>/', stripe_simple.views.buy_item, name='buy_item')
 ]
