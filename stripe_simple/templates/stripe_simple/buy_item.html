@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    var stripe = Stripe('pk_test_51M5Ej5AOiYw02tQNODQIZcVlMHpQwLf8ThvFGt1vB96eAjXxR6jUzKC7ngioFL3SkTXjnmLhyhrSxk6xd2Sw6kHK00FH2Jo0Ew');
+    function createCheckoutSession() {
+        fetch('/get_session/{{ item.pk }}/', {method: 'GET'})
+        .then(response => response.json())
+        .then(session => stripe.redirectToCheckout({ sessionId: session.id }))
+    }
+</script>
 <body>
 {% block content %}
 <p>
@@ -19,14 +28,6 @@
 
 {% endblock content %}
 </body>
-<script src="https://js.stripe.com/v3/"></script>
-<script>
-    var stripe = Stripe('pk_test_51M5Ej5AOiYw02tQNODQIZcVlMHpQwLf8ThvFGt1vB96eAjXxR6jUzKC7ngioFL3SkTXjnmLhyhrSxk6xd2Sw6kHK00FH2Jo0Ew')
-    function createCheckoutSession() {
-        fetch('/buy/{{ item.id }}', {method: 'GET'})
-        .then(response => return response.json())
-        .then(session => stripe.redirectToCheckout({ sessionId: session.id }))
-    }
-</script>
+
 
 </html>
