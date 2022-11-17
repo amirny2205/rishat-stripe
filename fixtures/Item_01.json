@@ -13,10 +13,10 @@
     "model": "stripe_simple.item",
     "pk": 2,
     "fields": {
-        "name": "хлеб",
-        "description": "вкусный хлеб",
-        "price": 20,
-        "stripe_price_id": "price_1M5FXQAOiYw02tQN0QzmZkuu"
+        "name": "мобильник",
+        "description": "смартфон",
+        "price": 10000,
+        "stripe_price_id": "price_1M5FxnAOiYw02tQNUnyw2LsM"
     }
 },
 {
