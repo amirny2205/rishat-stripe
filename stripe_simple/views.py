@@ -8,7 +8,7 @@ from django.conf import settings
 stripe.api_key = settings.STRIPE_SECRET_KEY
 domain = settings.DOMAIN
 
-def get_session(request, pk):
+def buy(request, pk):
     item = get_object_or_404(Item, pk=pk)
     checkout_session = stripe.checkout.Session.create(
         payment_method_types=['card'],
@@ -20,15 +20,15 @@ def get_session(request, pk):
             },
         ],
         success_url=domain + reverse('success'),
-        cancel_url=domain + reverse('buy_item', kwargs={'pk': item.pk})
+        cancel_url=domain + reverse('item', kwargs={'pk': item.pk})
     )
     return JsonResponse({'id': checkout_session.stripe_id})
 
 
-def buy_item(request, pk):
+def item(request, pk):
     item = get_object_or_404(Item, pk=pk)
     context = {'item': item}
-    return render(request, 'stripe_simple/buy_item.html', context)
+    return render(request, 'stripe_simple/item.html', context)
 
 
 def success(request):

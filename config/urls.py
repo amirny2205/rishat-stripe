@@ -19,7 +19,7 @@ import stripe_simple.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('get_session/<int:pk>/', stripe_simple.views.get_session, name='get_session'),
-    path('buy_item/<int:pk>/', stripe_simple.views.buy_item, name='buy_item'),
+    path('buy/<int:pk>/', stripe_simple.views.buy, name='buy'),
+    path('item/<int:pk>/', stripe_simple.views.item, name='item'),
     path('success/', stripe_simple.views.success, name='success')
 ]
